@@ -13,7 +13,6 @@ class MainRepository {
     private var cacheProductsDataBean: ProductsDataViewBean? = null
 
     suspend fun loadProducts(): ProductsDataViewBean = withContext(Dispatchers.IO) {
-        delay(1000)
         val reader = App.context.assets.open("products.json").reader()
         val classifyList = Gson().fromJson(reader.readText(), ProductsApiBean::class.java).data
         val classifyViewList = classifyList.map {
